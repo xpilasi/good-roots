@@ -1,46 +1,62 @@
 <template>
-  <section class="py-16 px-6 md:px-16 lg:px-24 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div
+  <section class="py-16 bg-white">
+    <Container class="mx-auto relative">
+      <Swiper
+        :modules="modules"
+        :slides-per-view="1"
+        :space-between="24"
+        :pagination="{
+          el: '.swiper-pagination-custom',
+          clickable: true
+        }"
+        :autoplay="{ delay: 4000, disableOnInteraction: false }"
+        :breakpoints="{
+          640: { slidesPerView: 2, spaceBetween: 20 },
+          1024: { slidesPerView: 3, spaceBetween: 24 },
+          1280: { slidesPerView: 4, spaceBetween: 24 }
+        }"
+        class="pb-16"
+      >
+        <SwiperSlide
           v-for="item in menuItems"
           :key="item.id"
-          class="group cursor-pointer"
         >
-          <div
-            class="relative aspect-[3/4] overflow-hidden mb-4"
-            :style="{ backgroundColor: item.bgColor }"
-          >
-            <ImageWithFallback
-              :src="item.image"
-              :alt="item.name"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--soft-black)">
-            {{ item.name }}
-          </h3>
-          <p style="font-size: 0.95rem; font-weight: 300; color: var(--warm-gray); margin-bottom: 1rem">
-            {{ item.description }}
-          </p>
-          <Button class="w-full bg-black hover:bg-black/90 text-white rounded-full">
-            Book your table
-          </Button>
-        </div>
-      </div>
-    </div>
+          <DishCard
+            :id="item.id"
+            :name="item.name"
+            :image="item.image"
+            :description="item.description"
+            :bg-color="item.bgColor"
+          />
+        </SwiperSlide>
+
+        <!-- Custom Pagination -->
+        <div class="swiper-pagination-custom flex justify-center gap-2 mt-8"></div>
+      </Swiper>
+    </Container>
   </section>
 </template>
 
 <script>
-import ImageWithFallback from './ui/ImageWithFallback.vue'
-import Button from './ui/Button.vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import DishCard from './DishCard.vue'
+import Container from './ui/Container.vue'
 
 export default {
   name: 'MenuGrid',
   components: {
-    ImageWithFallback,
-    Button
+    Swiper,
+    SwiperSlide,
+    DishCard,
+    Container
+  },
+  setup() {
+    return {
+      modules: [Pagination, Autoplay]
+    }
   },
   data() {
     return {
@@ -72,9 +88,54 @@ export default {
           image: 'https://images.unsplash.com/photo-1751200884901-c1c6f43ae1d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMHBpenphJTIwYXJ0aXNhbnxlbnwxfHx8fDE3NjI2NzUwNzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
           description: 'Artisan pizza, natural ingredients',
           bgColor: '#FFF3E0'
+        },
+        {
+          id: 5,
+          name: 'Buddha Bowl',
+          image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+          description: 'Quinoa, roasted chickpeas, tahini',
+          bgColor: '#E8F3F1'
+        },
+        {
+          id: 6,
+          name: 'Acai Power',
+          image: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+          description: 'Acai, granola, fresh berries',
+          bgColor: '#F3E5F5'
+        },
+        {
+          id: 7,
+          name: 'Green Energy',
+          image: 'https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+          description: 'Spinach, matcha, tropical fruits',
+          bgColor: '#E8F8E8'
+        },
+        {
+          id: 8,
+          name: 'Protein Stack',
+          image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+          description: 'Grilled chicken, sweet potato, kale',
+          bgColor: '#FFF8E1'
         }
       ]
     }
   }
 }
 </script>
+
+<style scoped>
+/* Minimal CSS for Swiper's dynamically generated pagination bullets */
+.swiper-pagination-custom :deep(.swiper-pagination-bullet) {
+  width: 12px;
+  height: 12px;
+  background: #d1d5db;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.swiper-pagination-custom :deep(.swiper-pagination-bullet-active) {
+  background: #10b981;
+  width: 32px;
+  border-radius: 9999px;
+}
+</style>

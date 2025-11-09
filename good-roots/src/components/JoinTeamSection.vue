@@ -1,9 +1,9 @@
 <template>
   <section
-    class="relative py-24 px-6 md:px-16 lg:px-24 overflow-hidden"
+    class="relative py-24 overflow-hidden"
     style="background-color: var(--terracotta)"
   >
-    <div class="max-w-7xl mx-auto">
+    <Container class="mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <h2 style="font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1; letter-spacing: -0.02em; color: white; margin-bottom: 2rem">
@@ -25,19 +25,21 @@
           />
         </div>
       </div>
-    </div>
+    </Container>
   </section>
 </template>
 
 <script>
 import ImageWithFallback from './ui/ImageWithFallback.vue'
 import Button from './ui/Button.vue'
+import Container from './ui/Container.vue'
 
 export default {
   name: 'JoinTeamSection',
   components: {
     ImageWithFallback,
-    Button
+    Button,
+    Container
   }
 }
 </script>

@@ -2,22 +2,24 @@
   <div class="min-h-screen bg-white">
     <Navigation />
     <Hero />
-    <FoodRevolution />
-    <div id="menu">
-      <MenuGrid />
+    <div class="relative z-10 bg-white">
+      <FoodRevolution />
+      <div id="menu">
+        <MenuGrid />
+      </div>
+      <CommunitySection />
+      <div id="mission">
+        <MissionSection />
+      </div>
+      <div id="careers">
+        <JoinTeamSection />
+      </div>
+      <div id="locations">
+        <LocationsSection />
+      </div>
+      <SpecialtySection />
+      <Footer />
     </div>
-    <CommunitySection />
-    <div id="mission">
-      <MissionSection />
-    </div>
-    <div id="careers">
-      <JoinTeamSection />
-    </div>
-    <div id="locations">
-      <LocationsSection />
-    </div>
-    <SpecialtySection />
-    <Footer />
   </div>
 </template>
 
@@ -42,7 +44,7 @@ export default {
     MenuGrid,
     CommunitySection,
     MissionSection,
-    JoinTeamSection,
+    // JoinTeamSection,
     LocationsSection,
     SpecialtySection,
     Footer

@@ -5,18 +5,18 @@
       isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
     ]"
   >
-    <div class="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+    <Container class="mx-auto">
       <div class="flex items-center justify-between h-20">
         <!-- Logo -->
         <a
           href="#"
           :class="[
             'transition-colors',
-            isScrolled ? 'text-black' : 'text-white'
+            isScrolled ? ' text-black text-2xl font-light tracking-widest' : 'text-white text-2xl font-light tracking-widest'
           ]"
-          style="font-size: 1.5rem; font-weight: 900; letter-spacing: -0.02em"
+          
         >
-          EAT REAL.
+          good roots
         </a>
 
         <!-- Desktop Navigation -->
@@ -39,13 +39,18 @@
         <div class="hidden md:flex items-center gap-4">
           <Button
             :class="[
-              'rounded-full',
+              'rounded-full cursor-pointer',
               isScrolled
-                ? 'bg-black text-white hover:bg-black/90'
-                : 'bg-white text-black hover:bg-white/90'
+                ? 'bg-black !text-white hover:bg-black/90'
+                : 'bg-white !text-black hover:bg-white/90'
             ]"
           >
-            <ShoppingBag class="w-4 h-4 mr-2" />
+            <ShoppingBag
+              :class="[
+                'w-4 h-4 mr-2',
+                isScrolled ? 'text-white' : 'text-black'
+              ]"
+            />
             Book your table
           </Button>
         </div>
@@ -84,13 +89,14 @@
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   </nav>
 </template>
 
 <script>
 import { Menu, X, ShoppingBag } from 'lucide-vue-next'
 import Button from './ui/Button.vue'
+import Container from './ui/Container.vue'
 
 export default {
   name: 'Navigation',
@@ -98,7 +104,8 @@ export default {
     Menu,
     X,
     ShoppingBag,
-    Button
+    Button,
+    Container
   },
   data() {
     return {
@@ -108,7 +115,7 @@ export default {
         { name: 'Menu', href: '#menu' },
         { name: 'Locations', href: '#locations' },
         { name: 'About', href: '#mission' },
-        { name: 'Careers', href: '#careers' }
+        // { name: 'Careers', href: '#careers' }
       ]
     }
   },

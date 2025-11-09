@@ -1,6 +1,6 @@
 <template>
-  <footer class="bg-black text-white py-16 px-6 md:px-16 lg:px-24">
-    <div class="max-w-7xl mx-auto">
+  <footer class="bg-black text-white py-16">
+    <Container class="mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
         <!-- Brand -->
         <div>
@@ -99,12 +99,13 @@
           </button>
         </div>
       </div>
-    </div>
+    </Container>
   </footer>
 </template>
 
 <script>
 import { Instagram, Facebook, Twitter, Smartphone } from 'lucide-vue-next'
+import Container from './ui/Container.vue'
 
 export default {
   name: 'Footer',
@@ -112,15 +113,16 @@ export default {
     Instagram,
     Facebook,
     Twitter,
-    Smartphone
+    Smartphone,
+    Container
   },
   data() {
     return {
       quickLinks: [
-        { name: 'Menu', href: '#' },
-        { name: 'Locations', href: '#' },
-        { name: 'About Us', href: '#' },
-        { name: 'Careers', href: '#' }
+        { name: 'Menu', href: '#menu' },
+        { name: 'Locations', href: '#locations' },
+        { name: 'About Us', href: '#mission' },
+        { name: 'Careers', href: '#careers' }
       ],
       supportLinks: [
         { name: 'Contact', href: '#' },
